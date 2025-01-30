@@ -7,11 +7,25 @@ import { MarketsSection } from './components/home/MarketsSection';
 import { getCryptoListings } from './utils/api';
 import type { Crypto } from '@/types/crypto';
 
+/**
+ * Home Page Component
+ * 
+ * Main landing page of the application featuring:
+ * - Real-time cryptocurrency listings
+ * - Market overview
+ * - Hero section with stats
+ * - Dynamic data fetching
+ */
 export default function Home() {
+  // State for cryptocurrency data and loading states
   const [cryptos, setCryptos] = useState<Crypto[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Fetch cryptocurrency data on component mount
+   * Handles loading states and error scenarios
+   */
   useEffect(() => {
     const fetchCryptos = async () => {
       try {

@@ -9,12 +9,20 @@ This document outlines the key assumptions made during the development of Crypto
 - ES6+ JavaScript support
 - CSS Grid and Flexbox support
 - WebP image format support
+- localStorage availability for theme persistence
+
+### Theme System
+- Users prefer light mode by default
+- Theme preferences should persist across sessions
+- Manual theme switching is sufficient (no system preference sync)
+- localStorage is available for theme storage
 
 ### User Environment
 - Minimum screen width of 320px
 - JavaScript enabled
-- Cookies enabled for theme persistence
+- Cookies enabled for session management
 - Stable internet connection
+- localStorage enabled for theme persistence
 
 ### API
 - CoinMarketCap API availability
@@ -23,32 +31,42 @@ This document outlines the key assumptions made during the development of Crypto
 
 ## User Experience Assumptions
 
+### User Interface
+- Light theme provides better initial user experience
+- Theme toggle is easily accessible
+- Theme changes are smooth and immediate
+- No flash of wrong theme during page load
+
 ### User Knowledge
 - Basic understanding of cryptocurrency terms
 - Familiarity with web navigation patterns
 - English language proficiency
+- Understanding of basic UI controls (theme toggle)
 
 ### User Behavior
 - Primary use on desktop and mobile devices
 - Short, focused sessions for price checking
 - Regular return visits for market updates
+- Manual theme selection when needed
 
 ### User Needs
 - Quick access to price information
 - Simple currency conversion
 - Visual price trend indicators
+- Comfortable reading experience in light mode
+- Option to switch to dark mode when preferred
 
 ## Performance Assumptions
 
 ### Loading Times
 - API responses within 1-2 seconds
 - Initial page load under 3 seconds
-- Time to Interactive under 5 seconds
+- Immediate theme changes
+- No visible theme flashing
 
-### Data Usage
-- Reasonable API call frequency
-- Cached data remains valid for 5 minutes
-- Local storage under 5MB
+### Storage
+- localStorage available for theme persistence
+- Minimal storage requirements for theme preference
 
 ## Security Assumptions
 

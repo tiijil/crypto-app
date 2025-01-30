@@ -6,29 +6,34 @@ import { getCryptoConverter, getCryptoListings } from '../utils/api';
 import { Header } from '../components/Header';
 import { Dropdown } from '../components/Dropdown';
 import { ArrowLeftRight } from 'lucide-react';
+import type { CryptoOption, CryptoListing } from '@/types/crypto';
 
-interface CryptoOption {
-  symbol: string;
-  name: string;
-  icon: string;
-}
-
-interface CryptoListing {
-  id: number;
-  symbol: string;
-  name: string;
-}
-
+/**
+ * CryptoConverter Page Component
+ * 
+ * Provides cryptocurrency conversion functionality with:
+ * - Real-time conversion rates
+ * - Dynamic cryptocurrency selection
+ * - Input validation
+ * - Error handling
+ * - Loading states
+ */
 export default function CryptoConverter() {
+  // Form state
   const [amount, setAmount] = useState('1');
   const [fromCrypto, setFromCrypto] = useState('BTC');
   const [toCrypto, setToCrypto] = useState('ETH');
   const [result, setResult] = useState<number | null>(null);
+  
+  // UI state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [options, setOptions] = useState<CryptoOption[]>([]);
   const [loadingOptions, setLoadingOptions] = useState(true);
 
+  /**
+   * Fetch available cryptocurrencies on component mount
+   */
   useEffect(() => {
     const fetchOptions = async () => {
       try {
@@ -49,6 +54,10 @@ export default function CryptoConverter() {
     fetchOptions();
   }, []);
 
+  /**
+   * Handle conversion request
+   * Validates input and performs conversion
+   */
   const handleConvert = async () => {
     if (!amount || !fromCrypto || !toCrypto) {
       setError('Please fill in all fields');

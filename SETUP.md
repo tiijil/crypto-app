@@ -137,6 +137,14 @@ npm install
 - Regular dependency updates
 - Security headers configuration
 
+## Theme Configuration
+
+The application is configured to:
+- Start in light mode for all users
+- Save user theme preferences in localStorage
+- Support manual theme switching
+- Prevent theme flashing during page load
+
 ## Production Checklist
 
 - [ ] Environment variables configured
@@ -147,6 +155,10 @@ npm install
 - [ ] Backup strategy implemented
 - [ ] CI/CD pipeline configured
 - [ ] Documentation updated
+- [ ] Theme system verified
+  - [ ] Confirm light mode default
+  - [ ] Test theme persistence
+  - [ ] Verify theme toggle functionality
 
 ## Support
 

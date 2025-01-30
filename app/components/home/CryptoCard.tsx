@@ -8,6 +8,23 @@ interface CryptoCardProps {
   crypto: Crypto;
 }
 
+/**
+ * CryptoCard Component
+ * 
+ * Displays detailed information about a single cryptocurrency including:
+ * - Currency icon and name
+ * - Current price
+ * - 24h price change
+ * - 7d price change
+ * 
+ * Features:
+ * - Hover animations
+ * - Responsive design
+ * - Fallback image handling
+ * - Price formatting
+ * 
+ * @param {CryptoCardProps} props - Component props
+ */
 export function CryptoCard({ crypto }: CryptoCardProps) {
   return (
     <motion.div
@@ -16,6 +33,7 @@ export function CryptoCard({ crypto }: CryptoCardProps) {
       animate={{ opacity: 1 }}
       whileHover={{ y: -4 }}
     >
+      {/* Crypto Header with Icon and Name */}
       <div className="flex items-center gap-3 mb-4">
         <Image
           src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto.id}.png`}
@@ -29,10 +47,13 @@ export function CryptoCard({ crypto }: CryptoCardProps) {
         />
         <div className="min-w-0">
           <h2 className="font-semibold truncate">{crypto.name}</h2>
-          <p className="text-xs sm:text-sm text-muted-foreground truncate">{crypto.symbol}</p>
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">
+            {crypto.symbol}
+          </p>
         </div>
       </div>
       
+      {/* Price and Change Information */}
       <div className="space-y-3">
         <PriceRow label="Price" value={`$${crypto.quote.USD.price.toFixed(2)}`} />
         <ChangeRow 

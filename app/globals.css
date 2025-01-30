@@ -2,33 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base HTML element styles */
 html {
-  /* Add transition for smooth theme changes */
+  /* Smooth transition for theme changes */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Light theme variables (default theme) */
 :root {
-  --background: #ffffff;
-  --card-background: #ffffff;
-  --foreground: #171717;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --border: #e5e7eb;
+  --background: #ffffff;      /* Main background */
+  --card-background: #ffffff; /* Card/elevated surface background */
+  --foreground: #171717;      /* Primary text color */
+  --primary: #3b82f6;         /* Primary brand color */
+  --primary-hover: #2563eb;   /* Primary color hover state */
+  --muted: #f3f4f6;          /* Muted/secondary background */
+  --muted-foreground: #6b7280; /* Muted/secondary text */
+  --border: #e5e7eb;         /* Border color */
 }
 
+/* Dark theme variable overrides */
 [data-theme='dark'] {
-  --background: #171717;    /* neutral-900 */
-  --card-background: #262626;  /* neutral-800 */
-  --foreground: #fafafa;    /* neutral-50 */
-  --primary: #3b82f6;       /* keeping primary blue */
-  --primary-hover: #60a5fa; /* keeping primary hover blue */
-  --muted: #404040;         /* neutral-700 */
-  --muted-foreground: #d4d4d4;  /* neutral-300 */
-  --border: #404040;        /* neutral-700 */
+  --background: #171717;    /* Dark mode background */
+  --card-background: #262626;  /* Dark mode card background */
+  --foreground: #fafafa;    /* Dark mode text */
+  --primary: #3b82f6;       /* Consistent primary color */
+  --primary-hover: #60a5fa; /* Dark mode hover state */
+  --muted: #404040;         /* Dark mode muted background */
+  --muted-foreground: #d4d4d4;  /* Dark mode muted text */
+  --border: #404040;        /* Dark mode border */
 }
 
+/* Base body styles with theme variables */
 body {
   color: var(--foreground);
   background: var(--background);
@@ -36,6 +40,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Component utility classes */
 @layer components {
   .card {
     @apply bg-card-background border border-border rounded-xl shadow-lg transition-all duration-200;
