@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  /* Add transition for smooth theme changes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --background: #ffffff;
+  --card-background: #ffffff;
+  --foreground: #171717;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+}
+
+[data-theme='dark'] {
+  --background: #171717;    /* neutral-900 */
+  --card-background: #262626;  /* neutral-800 */
+  --foreground: #fafafa;    /* neutral-50 */
+  --primary: #3b82f6;       /* keeping primary blue */
+  --primary-hover: #60a5fa; /* keeping primary hover blue */
+  --muted: #404040;         /* neutral-700 */
+  --muted-foreground: #d4d4d4;  /* neutral-300 */
+  --border: #404040;        /* neutral-700 */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  transition: background-color 0.3s ease;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .card {
+    @apply bg-card-background border border-border rounded-xl shadow-lg transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full p-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200;
+  }
+
+  .button {
+    @apply px-6 py-3 rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg active:scale-95;
+  }
+
+  .bg-gradient-to-r {
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+  }
+}
+
+@layer base {
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted-foreground);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-foreground) var(--muted);
+  }
+
+  /* Remove spinners from number input */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-to-b {
+    background-image: linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to));
+  }
+
+  .bg-grid {
+    background-size: 50px 50px;
+    background-image: url('/grid.svg');
+  }
+}
