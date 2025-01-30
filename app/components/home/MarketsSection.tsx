@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { CryptoCard } from './CryptoCard';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 import { ErrorMessage } from '../ui/ErrorMessage';

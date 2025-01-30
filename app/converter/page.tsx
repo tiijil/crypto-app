@@ -13,6 +13,12 @@ interface CryptoOption {
   icon: string;
 }
 
+interface CryptoListing {
+  id: number;
+  symbol: string;
+  name: string;
+}
+
 export default function CryptoConverter() {
   const [amount, setAmount] = useState('1');
   const [fromCrypto, setFromCrypto] = useState('BTC');
@@ -27,7 +33,7 @@ export default function CryptoConverter() {
     const fetchOptions = async () => {
       try {
         const data = await getCryptoListings();
-        const cryptoOptions = data.map((crypto: any) => ({
+        const cryptoOptions = data.map((crypto: CryptoListing) => ({
           symbol: crypto.symbol,
           name: crypto.name,
           icon: `https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto.id}.png`

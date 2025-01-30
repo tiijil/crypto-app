@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Search, ArrowLeftRight } from 'lucide-react';
+import { ChevronDown, Search } from 'lucide-react';
+import Image from 'next/image';
 
 interface DropdownProps {
   value: string;
@@ -25,6 +26,8 @@ export function Dropdown({ value, onChange, options, placeholder }: DropdownProp
     option.symbol.toLowerCase().includes(search.toLowerCase()) ||
     option.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const selectedOption = options.find(opt => opt.symbol === value);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,17 +55,19 @@ export function Dropdown({ value, onChange, options, placeholder }: DropdownProp
         <div className="flex items-center gap-2 flex-1 min-w-0">
           {value ? (
             <>
-              {options.find(opt => opt.symbol === value)?.icon && (
-                <img 
-                  src={options.find(opt => opt.symbol === value)?.icon} 
+              {selectedOption?.icon && (
+                <Image 
+                  src={selectedOption.icon}
                   alt={value}
-                  className="w-6 h-6 rounded-full"
+                  width={24}
+                  height={24}
+                  className="rounded-full"
                 />
               )}
               <div className="truncate">
                 <span className="font-medium">{value}</span>
                 <span className="text-sm text-muted-foreground ml-2">
-                  {options.find(opt => opt.symbol === value)?.name}
+                  {selectedOption?.name}
                 </span>
               </div>
             </>
@@ -115,10 +120,12 @@ export function Dropdown({ value, onChange, options, placeholder }: DropdownProp
                     }}
                   >
                     {option.icon && (
-                      <img 
-                        src={option.icon} 
+                      <Image 
+                        src={option.icon}
                         alt={option.name}
-                        className="w-8 h-8 rounded-full"
+                        width={32}
+                        height={32}
+                        className="rounded-full"
                       />
                     )}
                     <div className="flex-1 min-w-0">
