@@ -162,45 +162,50 @@ export default function CryptoConverter() {
 
               <button
                 onClick={handleConvert}
-                disabled={loading || loadingOptions}
-                className="button w-full"
+                disabled={loading}
+                className={`
+                  w-full mt-6 px-6 py-3 
+                  bg-gradient-to-r from-blue-500 to-blue-600 
+                  hover:from-blue-600 hover:to-blue-700
+                  dark:from-blue-400 dark:to-blue-500
+                  dark:hover:from-blue-500 dark:hover:to-blue-600
+                  text-white font-semibold rounded-lg
+                  transition-all duration-200
+                  border border-blue-600/20 dark:border-blue-400/20
+                  shadow-[0_2px_8px_-2px_rgba(59,130,246,0.3)]
+                  hover:shadow-[0_4px_12px_-4px_rgba(59,130,246,0.4)]
+                  dark:shadow-[0_2px_8px_-2px_rgba(59,130,246,0.25)]
+                  dark:hover:shadow-[0_4px_12px_-4px_rgba(59,130,246,0.35)]
+                  disabled:opacity-50 disabled:cursor-not-allowed
+                  disabled:hover:shadow-[0_2px_8px_-2px_rgba(59,130,246,0.3)]
+                  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
+                  dark:focus:ring-offset-neutral-900
+                  active:scale-[0.98]
+                `}
               >
                 {loading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                    Converting...
-                  </span>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Converting...</span>
+                  </div>
                 ) : (
                   'Convert'
                 )}
               </button>
 
-              {error && (
-                <motion.div 
-                  className="p-4 bg-red-500/10 text-red-500 rounded-lg text-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {error}
-                </motion.div>
+              {result !== null && !error && (
+                <div className="mt-6 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800/50 text-center">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">Result</p>
+                  <p className="text-xl font-semibold mt-1">
+                    {result.toFixed(8)} {toCrypto}
+                  </p>
+                </div>
               )}
 
-              {result && !error && (
-                <motion.div
-                  className="p-6 bg-muted rounded-lg"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <div className="text-sm text-muted-foreground mb-1">Result</div>
-                  <div className="text-2xl font-bold flex items-center gap-2">
-                    <span>{amount} {fromCrypto}</span>
-                    <span className="text-muted-foreground">→</span>
-                    <span>{result.toFixed(8)} {toCrypto}</span>
-                  </div>
-                  <div className="text-sm text-muted-foreground mt-2">
-                    1 {fromCrypto} = {(result / Number(amount)).toFixed(8)} {toCrypto}
-                  </div>
-                </motion.div>
+              {error && (
+                <div className="mt-6 p-4 rounded-lg bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-center">
+                  {error}
+                </div>
               )}
             </div>
           </div>

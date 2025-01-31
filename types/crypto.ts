@@ -9,4 +9,16 @@ export interface Crypto {
       percent_change_7d: number;
     }
   }
+}
+
+export interface CryptoOption {
+  symbol: string;
+  name: string;
+  icon: string;
+}
+
+export interface CryptoListing {
+  id: number;
+  name: string;
+  symbol: string;
 } 
